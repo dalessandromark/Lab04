@@ -1,6 +1,8 @@
 package it.polito.tdp.lab04.DAO;
 
 import java.sql.Connection;
+
+
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -37,9 +39,15 @@ public class CorsoDAO {
 				System.out.println(codins + " " + numeroCrediti + " " + nome + " " + periodoDidattico);
 
 				// Crea un nuovo JAVA Bean Corso
+				Corso c = new Corso(codins, numeroCrediti, nome, periodoDidattico);
+				
 				// Aggiungi il nuovo oggetto Corso alla lista corsi
+				corsi.add(c);
+				
 			}
-
+			
+			
+			
 			return corsi;
 
 		} catch (SQLException e) {
