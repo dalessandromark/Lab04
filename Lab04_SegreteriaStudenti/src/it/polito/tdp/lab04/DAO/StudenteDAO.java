@@ -4,10 +4,10 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-
 import it.polito.tdp.lab04.model.Studente;
 
 public class StudenteDAO {
+	
 	
 	public ArrayList<Studente> getElencoStudenti(){
 		
@@ -45,31 +45,36 @@ public class StudenteDAO {
 		
 	}
 	
-	//Ottengo stringa concatenata di cognome e nome dello studente a partire dalla sua matricola
-		public String getStudente(int matricola) {
-			final String sql = "SELECT cognome, nome FROM studente WHERE matricola = ? ";
+	/*
+	 * Ottengo stringa concatenata di cognome e nome dello studente a partire dalla sua matricola
+	 */
+	public String getStudente(int matricola) {
+		
+		final String sql = "SELECT cognome, nome FROM studente WHERE matricola = ? ";
 			
-			try {
+		try {
+			
+			Connection conn = ConnectDB.getConnection();
+			PreparedStatement st = conn.prepareStatement(sql);	
+			st.setInt(1, matricola);
+			ResultSet rs = st.executeQuery();
 				
-				Connection conn = ConnectDB.getConnection();
-				PreparedStatement st = conn.prepareStatement(sql);	
-				st.setInt(1, matricola);
-				ResultSet rs = st.executeQuery();
+			String s = new String();
 				
-				String s = new String();
-				
-				while(rs.next()) {
-					String cognome = rs.getString("cognome");
-					String nome = rs.getString("nome");
-					s = cognome+" "+nome;
-				}
-					
-				return s;
-					
-					
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				throw new RuntimeException("Errore Db");
+			while(rs.next()) {
+				String cognome = rs.getString("cognome");
+				String nome = rs.getString("nome");
+				s = cognome+" "+nome;
 			}
+					
+			return s;
+					
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			throw new RuntimeException("Errore Db");
 		}
+	}
+	
+		
+		
 }

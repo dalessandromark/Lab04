@@ -38,6 +38,17 @@ public class Model {
 	 public String getStudente(int matricola) {
 		 return s.getStudente(matricola);
 	 }
-	
+	 
+	 public String getIscrittiCorso(String nomeCorso) {
+		 List<Studente> iscritti = new ArrayList<Studente>(c.getStudentiIscrittiAlCorso(nomeCorso));
+		 String lista = new String();
+		 
+		 for(Studente x : iscritti) {
+			 lista += x.getMatricola()+" "+x.getNome()+" "+x.getCognome()+" "+x.getCds()+"\n";
+		 }
+		 
+		 return lista;
+	 }
+
 	
 }

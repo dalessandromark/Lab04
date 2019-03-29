@@ -51,7 +51,7 @@
                   </HBox>
                </children>
             </HBox>
-            <TextArea fx:id="txtMessage" />
+            <TextArea fx:id="txtMessage" editable="false" />
             <HBox alignment="BASELINE_RIGHT">
                <children>
                   <Button fx:id="btnReset" mnemonicParsing="false" onAction="#doReset" text="Reset" />

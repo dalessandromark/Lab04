@@ -4,6 +4,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import it.polito.tdp.lab04.model.Model;
+import it.polito.tdp.lab04.model.Studente;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -63,8 +64,10 @@ private Model model;
     }
 
     @FXML
-    void doCercaIscritti(ActionEvent event) {
-
+    void doCercaIscritti(ActionEvent event) {   	
+    	String nomeCorso = boxCorso.getValue();
+    	String l = model.getIscrittiCorso(nomeCorso);
+    	txtMessage.setText(l);
     }
 
     @FXML
