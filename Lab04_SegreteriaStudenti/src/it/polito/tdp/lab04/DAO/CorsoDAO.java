@@ -122,10 +122,27 @@ public class CorsoDAO {
 	/*
 	 * Data una matricola ed il codice insegnamento, iscrivi lo studente al corso.
 	 */
-	public boolean inscriviStudenteACorso(Studente studente, Corso corso) {
-		// TODO
-		// ritorna true se l'iscrizione e' avvenuta con successo
-		return false;
+	public boolean inscriviStudenteACorso(int matricola, String nomeCorso) {
+		final String sql = "INSERT INTO iscrizione (matricola, codins)\n" + 
+				"VALUES (?, (SELECT codins \n" + 
+				"				FROM corso\n" + 
+				"				WHERE nome = ?))\n";
+		try {
+			Connection conn = ConnectDB.getConnection();
+			PreparedStatement st = conn.prepareStatement(sql);
+			st.setInt(1, matricola);
+			st.setString(2, nomeCorso);
+			ResultSet rs = st.executeQuery();
+			
+			/*
+			 *   Bisogna capire cosa restituisce la rs!!!!
+			 */
+			       
+			return false;
+			
+		} catch(SQLException e) {
+			throw new RuntimeException("Errore Db");
+		}
 	}
 }
 ;

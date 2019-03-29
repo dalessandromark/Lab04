@@ -99,7 +99,12 @@ private Model model;
 
     @FXML
     void doIscrivi(ActionEvent event) {
-    	
+    	int matricola = Integer.parseInt(txtMatricola.getText());
+    	String nomeCorso = boxCorso.getValue();
+    	if(model.iscrivi(matricola, nomeCorso))
+    		txtMessage.setText("Matricola "+matricola+" aggiunta correttamente al corso "+" nomeCorso");
+    	else
+    		txtMessage.setText("Matricola "+matricola+" non è stata aggiunta al corso "+" nomeCorso");
     }
 
     @FXML

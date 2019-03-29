@@ -73,8 +73,19 @@ public class Model {
 	 }
 	 
 	 
+	 public boolean esiste(int matricola) {
+		 String stud = s.getStudente(matricola);
+		 if(stud.contains(";"))
+			 return true;
+		 else
+			 return false;
+	 }
 	 
-	 
-	 
+	 public boolean iscrivi(int matricola, String nomeCorso) {
+		 if(this.esiste(matricola) && nomeCorso != null)
+			return c.inscriviStudenteACorso(matricola, nomeCorso);
+		 else 
+			 return false;
+	 }
 	
 }
