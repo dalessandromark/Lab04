@@ -60,7 +60,9 @@ private Model model;
 
     @FXML
     void doCercaCorsi(ActionEvent event) {
-
+    	int matricola = Integer.parseInt(txtMatricola.getText());
+    	String y = model.getCorsiFrequentati(matricola);
+    	txtMessage.setText(y);
     }
 
     @FXML
@@ -74,19 +76,25 @@ private Model model;
     void doCompleta(ActionEvent event) {
     	int matricola = Integer.parseInt(txtMatricola.getText());
     	String st = model.getStudente(matricola);
-    	String[] s = st.split(" ");
-		txtCognome.setText(s[0]);
-		txtNome.setText(s[1]);
+    	if(st.contains(";")) {
+    		String[] s = st.split(";");
+    		txtCognome.setText(s[0]);
+    		txtNome.setText(s[1]);
+    	} else
+    		txtMessage.setText(st);
     }
 
     @FXML
     void doIscrivi(ActionEvent event) {
-
+    	
     }
 
     @FXML
     void doReset(ActionEvent event) {
-
+    	txtMatricola.clear();
+    	txtNome.clear();
+    	txtCognome.clear();
+    	txtMessage.clear();
     }
 
     @FXML

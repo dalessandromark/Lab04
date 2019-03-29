@@ -49,6 +49,26 @@ public class Model {
 		 
 		 return lista;
 	 }
+	 
+	 public String getCorsiFrequentati(int matricola) {
+		 List<Corso> corsiF = new ArrayList<Corso>(s.getCorsiFrequentati(matricola)); 
+		 String lCorsi= new String();
+		 
+		 if(corsiF.isEmpty())
+			 lCorsi = "Matricola errata";
+		 else {
+			 for(Corso x : corsiF) {
+				 lCorsi += x.getCodins()+" "+x.getCrediti()+" "+x.getNome()+" "+x.getPd()+"\n";
+			 }
+		 }
+		 
+		 return lCorsi;
+	 }
 
+	 
+	 
+	 
+	 
+	 
 	
 }
