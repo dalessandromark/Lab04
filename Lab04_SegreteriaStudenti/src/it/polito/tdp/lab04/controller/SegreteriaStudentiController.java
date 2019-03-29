@@ -60,9 +60,22 @@ private Model model;
 
     @FXML
     void doCercaCorsi(ActionEvent event) {
+    	String cc = new String();
+    	
+    	if(boxCorso.getValue()!=null)
+    		cc = boxCorso.getValue();
+    	else
+    		cc = boxCorso.getPromptText();
+    	
     	int matricola = Integer.parseInt(txtMatricola.getText());
-    	String y = model.getCorsiFrequentati(matricola);
-    	txtMessage.setText(y);
+		String y = model.getCorsiFrequentati(matricola);
+    	
+		if(cc.compareTo(boxCorso.getPromptText())==0 || cc.compareTo("")==0)
+    		txtMessage.setText(y); 
+    	else if(model.isIscritto(matricola, cc) == true)
+    			txtMessage.setText("La matricola "+matricola+" è iscritta al corso "+cc);
+    	else
+    			txtMessage.setText("La matricola "+matricola+" non è iscritta al corso "+cc);
     }
 
     @FXML

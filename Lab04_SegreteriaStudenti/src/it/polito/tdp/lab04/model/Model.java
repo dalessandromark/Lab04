@@ -64,7 +64,13 @@ public class Model {
 		 
 		 return lCorsi;
 	 }
-
+	 
+	 public boolean isIscritto(int matricola, String nomeCorso) {
+		 if (this.getCorsiFrequentati(matricola).contains(nomeCorso))
+			 return true;
+		 else 
+			 return false;
+	 }
 	 
 	 
 	 
